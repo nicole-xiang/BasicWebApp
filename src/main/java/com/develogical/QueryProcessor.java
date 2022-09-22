@@ -1,4 +1,5 @@
 package com.develogical;
+import java.util.Arrays;
 
 public class QueryProcessor {
 
@@ -11,12 +12,20 @@ public class QueryProcessor {
         if (query.toLowerCase().contains("name")) {
             return "NX-Team";
         }
-        if (query.toLowerCase().contains("plus")) {
-            String[] parts = query.split("%20");
-            Integer num1 = Integer.parseInt(parts[query.indexOf("plus")-1]); 
-            Integer num2 = Integer.parseInt(parts[query.indexOf("plus")+1]);
-            return String.valueOf(num1+num2); 
-                 }
+        if (query.toLowerCase().contains("plus") || query.toLowerCase().contains("minus")) {
+            String[] parts = query.split(" ");
+            Integer num1 = Integer.parseInt(parts[Arrays.asList(parts).indexOf("plus")-1]); 
+            Integer num2 = Integer.parseInt(parts[Arrays.asList(parts).indexOf("plus")+1]);
+            
+            if (Arrays.asList(parts).contains("plus")){
+                String ans = String.valueOf(num1+num2);
+                return ans;
+            }
+            if (Arrays.asList(parts).contains("minus")){
+                String ans = String.valueOf(num1-num2);
+                return ans;
+            }
+            }
         return "";
     }
 }

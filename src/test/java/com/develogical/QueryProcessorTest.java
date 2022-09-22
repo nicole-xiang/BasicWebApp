@@ -33,6 +33,10 @@ public class QueryProcessorTest {
     public void knowsTeamName() throws Exception {
         assertThat(queryProcessor.process("what is your name"), containsString("NX-Team"));
     }
+    @Test
+    public void mathplus() throws Exception {
+        assertThat(queryProcessor.process("what is 20 plus 20"), containsString("40"));
+    }
 // what%20is%2014%20plus%201
     @Test
     public void howToSplitStrings() {
